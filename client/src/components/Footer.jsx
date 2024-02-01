@@ -1,5 +1,6 @@
 import { Footer } from "flowbite-react";
 import { Link } from "react-router-dom";
+import { BsFacebook } from "react-icons/bs";
 
 export default function FooterCom() {
   return (
@@ -58,12 +59,16 @@ export default function FooterCom() {
             </div>
           </div>
         </div>
-        <div className="">
+        <Footer.Divider />
+        <div className="w-full sm:flex sm:items-center sm:justify-between">
           <Footer.Copyright
             href="#"
             by="Budnik - Ti"
             year={new Date().getFullYear()}
           />
+          <div className=" flex gap-6 sm:mt-0 mt-4 sm:justify-center">
+            <Footer.Icon href="#" icon={BsFacebook} />
+          </div>
         </div>
       </div>
     </Footer>
