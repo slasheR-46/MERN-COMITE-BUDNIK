@@ -1,3 +1,3 @@
 export default function Projects() {
-  return <div>Projects</div>;
+  return <div className="min-h-screen flex flex-col md:flex-row">Projects</div>;
 }
