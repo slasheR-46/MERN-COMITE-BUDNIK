@@ -10,6 +10,8 @@ import {
 import { app } from "../../firebase";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { signoutSuccess } from "../redux/user/userSlice";
+import { useDispatch } from "react-redux";
 
 export default function DashProfile() {
   const { currentUser } = useSelector((state) => state.user);
@@ -19,6 +21,7 @@ export default function DashProfile() {
   const [imageFileUploadError, setImageFileUploadError] = useState(null);
   // console.log(imageFileUploadProgress, imageFileUploadError);
   const filePickerRef = useRef(null);
+  const dispatch = useDispatch();
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -26,6 +29,7 @@ export default function DashProfile() {
       setImageFileUrl(URL.createObjectURL(file));
     }
   };
+
   useEffect(() => {
     if (imageFile) {
       uploadImage();
@@ -71,6 +75,22 @@ export default function DashProfile() {
         });
       }
     );
+  };
+
+  const handleSignout = async () => {
+    try {
+      const res = await fetch("api/user/signout", {
+        method: "POST",
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        console.log(data.message);
+      } else {
+        dispatch(signoutSuccess());
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -140,7 +160,9 @@ export default function DashProfile() {
       </form>
       <div className="text-red-500 flex justify-between mt-5">
         <span className="cursor-pointer">Eliminar Cuenta</span>
-        <span className="cursor-pointer">Cerrar sesion</span>
+        <span onClick={handleSignout} className="cursor-pointer">
+          Cerrar sesion
+        </span>
       </div>
     </div>
   );
