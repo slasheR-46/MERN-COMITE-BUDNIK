@@ -1,0 +1,27 @@
+// 📁 USER 📁
+
+### Actualizar usuario
+Put http://localhost:3000/api/user/update/65d55f4ced0035776a705feb
+### Eliminar usuario
+DELETE http://localhost:3000/api/user/delete/65d55f4ced0035776a705feb
+
+// 📁 AUTHENTICATION 📁
+
+### Autenticando usuario
+POST http://localhost:3000/api/auth/signin
+Content-Type: application/json
+
+{
+	"email": "user4@gmail.com",
+	"password": "user4"
+}
+
+### Creando usuario
+POST http://localhost:3000/api/auth/signup
+Content-Type: application/json
+    
+{
+    "username": "user5",
+    "email": "user5@gmail.com",
+    "password": "user5"
+}
