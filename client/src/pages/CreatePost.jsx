@@ -16,7 +16,7 @@ export default function CreatePost() {
             className="flex-1"
           />
           <Select>
-            <option value="Sin categoria">Seleccione categoria</option>
+            <option value="Sin categoria">Sin categoria</option>
             <option value="Prueba categoria 0">Prueba 0</option>
             <option value="Prueba categoria 1">Prueba 1</option>
             <option value="Prueba categoria 1">Prueba 2</option>
@@ -35,10 +35,10 @@ export default function CreatePost() {
           </Button>
         </div>
         <ReactQuill
+          required
           theme="snow"
           placeholder="Escribe un post..."
           className="h-72 mb-12"
-          required
         />
         <Button type="submit" gradientDuoTone="purpleToBlue">
           Publicar

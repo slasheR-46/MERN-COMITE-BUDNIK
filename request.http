@@ -16,8 +16,8 @@ POST http://localhost:3000/api/auth/signin
 Content-Type: application/json
 
 {
-	"email": "user4@gmail.com",
-	"password": "user4"
+	"email": "admin@gmail.com",
+	"password": "admin"
 }
 
 ### Creando usuario
@@ -25,11 +25,17 @@ POST http://localhost:3000/api/auth/signup
 Content-Type: application/json
     
 {
-    "username": "user6",
-    "email": "user6@gmail.com",
-    "password": "user6"
+    "username": "admin",
+    "email": "admin@gmail.com",
+    "password": "admin"
 }
 
 // 📁 POST 📁
 ### Crear post
 POST http://localhost:3000/api/post/create
+content-Content-Type: application/json
+
+{
+    "title": "new post",
+    "content": "post content"
+}
