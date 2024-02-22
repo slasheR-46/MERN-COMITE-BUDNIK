@@ -1,6 +1,6 @@
 // 📁 USER 📁
 ### Actualizar usuario
-Put http://localhost:3000/api/user/update/65d55f4ced0035776a705feb
+Put http://localhost:3000/api/user/update/65d74542c50e7dda4556e5c1
 Content-Type: application/json
 
 {

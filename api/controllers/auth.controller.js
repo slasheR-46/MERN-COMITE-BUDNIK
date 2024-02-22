@@ -45,19 +45,16 @@ export const signin = async (req, res, next) => {
     if (!validUser) {
       return next(errorHandler(404, "Usuario no encontrado"));
     }
-
     const validPassword = bcryptjs.compareSync(password, validUser.password);
     if (!validPassword) {
       return next(errorHandler(400, "Contraseña invalida"));
     }
-
     const token = jwt.sign(
       { id: validUser._id, isAdmin: validUser.isAdmin },
       process.env.JWT_SECRET
     );
 
     const { password: pass, ...rest } = validUser._doc;
-
     res
       .status(200)
       .cookie("access_token", token, {

@@ -1,3 +1,5 @@
+import bcryptjs from "bcryptjs";
+import User from "../models/user.model.js";
 import { errorHandler } from "../utils/error.js";
 
 export const test = (req, res) => {
@@ -14,7 +16,7 @@ export const updateUser = async (req, res, next) => {
     if (req.body.password.length < 6) {
       return next(errorHandler(400, "No estas autorizado para esta ruta"));
     }
-    req.body.password = bcrypt.hashSync(req.body.password, 10);
+    req.body.password = bcryptjs.hashSync(req.body.password, 10);
   }
   if (req.body.username) {
     if (req.body.username.length < 7 || req.body.username.length > 20) {
@@ -30,7 +32,7 @@ export const updateUser = async (req, res, next) => {
         errorHandler(400, "El nombre de usuario no puede contener espacios")
       );
     }
-    if (req.body.username !== req.user.username.toLowerCase()) {
+    if (req.body.username !== req.body.username.toLowerCase()) {
       return next(
         errorHandler(400, "El nombre de usuario debe estar en minúsculas")
       );
@@ -44,7 +46,7 @@ export const updateUser = async (req, res, next) => {
       );
     }
     try {
-      const updateUser = await User.findByIdAndUpdate(
+      const updatedUser = await User.findByIdAndUpdate(
         req.params.userId,
         {
           $set: {
@@ -56,7 +58,7 @@ export const updateUser = async (req, res, next) => {
         },
         { new: true }
       );
-      const { password, ...rest } = updateUser._doc;
+      const { password, ...rest } = updatedUser._doc;
       res.status(200).json(rest);
     } catch (error) {
       next(error);
