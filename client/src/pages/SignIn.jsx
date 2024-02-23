@@ -57,7 +57,11 @@ export default function SignIn() {
             </span>
             Budnik
           </Link>
-          <p className="text-sm mt-5">Texto de prueba</p>
+          <p className="text-md mt-5">
+            Pensado para las noticias e información general e información de la
+            comunidad de Budnik.
+          </p>
+          <p className="text-sm">Powered by Ti Budnik</p>
         </div>
         {/* right */}
         <div className="flex-1">

@@ -18,14 +18,15 @@ import {
 } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
 export default function DashProfile() {
-  const { currentUser, error } = useSelector((state) => state.user);
+  const { currentUser, error, loading } = useSelector((state) => state.user);
   const [imageFile, setImageFile] = useState(null);
   const [imageFileUrl, setImageFileUrl] = useState(null);
   const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null);
   const [imageFileUploadError, setImageFileUploadError] = useState(null);
-  // console.log(imageFileUploadProgress, imageFileUploadError);
+  const [imageFileUploading, setImageFileUploading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const filePickerRef = useRef(null);
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ export default function DashProfile() {
     //     }
     //   }
     // }
+    setImageFileUploading(true);
     setImageFileUploadError(null);
     const storage = getStorage(app);
     const fileName = new Date().getTime() + imageFile.name;
@@ -178,9 +180,25 @@ export default function DashProfile() {
           defaultValue={currentUser.email}
         />
         <TextInput type="password" id="password" placeholder="password" />
-        <Button type="submit" gradientDuoTone="purpleToBlue" outline>
-          Actualziar
+        <Button
+          type="submit"
+          gradientDuoTone="purpleToBlue"
+          outline
+          disabled={loading || imageFileUploading}
+        >
+          {loading ? "Cargando..." : "Actualizar"}
         </Button>
+        {currentUser.isAdmin && (
+          <Link to={"/create-post"}>
+            <Button
+              type="button"
+              gradientDuoTone="purpleToBlue"
+              className="w-full"
+            >
+              Crear Post
+            </Button>
+          </Link>
+        )}
       </form>
       <div className="text-red-500 flex justify-between mt-5">
         <span onClick={() => setShowModal(true)} className="cursor-pointer">
@@ -210,9 +228,11 @@ export default function DashProfile() {
             </h3>
             <div className="flex justify-center gap-4">
               <Button color="failure" onClick={handleDeleteUser}>
-                Sí, eliminar.
+                Sí, Eliminar.
               </Button>
-              <Button color="gray">No, cancelar.</Button>
+              <Button color="gray" onClick={() => setShowModal(false)}>
+                No, Cancelar.
+              </Button>
             </div>
           </div>
         </Modal.Body>
