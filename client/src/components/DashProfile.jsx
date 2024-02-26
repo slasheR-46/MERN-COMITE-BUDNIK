@@ -224,14 +224,14 @@ export default function DashProfile() {
           <div className="text-center">
             <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto" />
             <h3 className="mb-5 text-lg text-gray-500 dark:text-gray-400">
-              Estas seguro de eliminar la cuenta ?
+              ¿Estás seguro de eliminar este Usuario?
             </h3>
             <div className="flex justify-center gap-4">
               <Button color="failure" onClick={handleDeleteUser}>
-                Sí, Eliminar.
+                Sí, Eliminar
               </Button>
               <Button color="gray" onClick={() => setShowModal(false)}>
-                No, Cancelar.
+                No, Cancelar
               </Button>
             </div>
           </div>
