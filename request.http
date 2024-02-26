@@ -1,15 +1,3 @@
-// 📁 USER 📁
-### Actualizar usuario
-Put http://localhost:3000/api/user/update/65d74542c50e7dda4556e5c1
-Content-Type: application/json
-
-{
-	"username": "prude"
-}
-
-### Eliminar usuario
-DELETE http://localhost:3000/api/user/delete/65d55f4ced0035776a705feb
-
 // 📁 AUTHENTICATION 📁
 ### Autenticando usuario
 POST http://localhost:3000/api/auth/signin
@@ -30,6 +18,20 @@ Content-Type: application/json
     "password": "admin"
 }
 
+// 📁 USER 📁
+### Actualizar usuario
+Put http://localhost:3000/api/user/update/65d74542c50e7dda4556e5c1
+Content-Type: application/json
+
+{
+	"username": "prude"
+}
+
+###  Eliminar usuario
+DELETE http://localhost:3000/api/user/delete/65d55f4ced0035776a705feb
+
+
+
 // 📁 POST 📁
 ### Crear post
 POST http://localhost:3000/api/post/create
@@ -39,3 +41,6 @@ content-Content-Type: application/json
     "title": "new post",
     "content": "post content"
 }
+
+### Obtener todos los posts
+GET POST http://localhost:3000/api/post/getposts
