@@ -53,9 +53,9 @@ export default function SignIn() {
             className="self-center whitespace-nowrap text-lg sm:text-xl font-semibold dark:thext white"
           >
             <span className="px-2 py-1 bg-gradient-to-r from-orange-600 via-orange-400 to-orange-600 rounded-lg text-white">
-              Comite
+              Budnik
             </span>
-            Budnik
+            Info
           </Link>
           <p className="text-md mt-5">
             Pensado para las noticias e información general e información de la

@@ -4,12 +4,12 @@ import { errorHandler } from "../utils/error.js";
 export const create = async (req, res, next) => {
   if (!req.user.isAdmin) {
     return next(
-      errorHandler(403, "No tienes permiso para crear una publicación.")
+      errorHandler(403, "No tienes permisos para crear una publicación.")
     );
   }
   if (!req.body.title || !req.body.content) {
     return next(
-      errorHandler(400, "Por favor proporcione todos los campos requeridos.")
+      errorHandler(400, "Por favor todos los campos son requeridos.")
     );
   }
   const slug = req.body.title
@@ -38,12 +38,12 @@ export const getposts = async (req, res, next) => {
     const posts = await Post.find({
       ...(req.query.userId && { userId: req.query.userId }),
       ...(req.query.category && { category: req.query.category }),
-      ...(req.query.slug && { category: req.query.slug }),
+      ...(req.query.slug && { slug: req.query.slug }),
       ...(req.query.postId && { _id: req.query.postId }),
       ...(req.query.searchTerm && {
         $or: [
-          { title: { $regex: query.searchTerm, $options: "i" } },
-          { content: { $regex: req.query.searchTern, $options: "i" } },
+          { title: { $regex: req.query.searchTerm, $options: "i" } },
+          { content: { $regex: req.query.searchTerm, $options: "i" } },
         ],
       }),
     })
