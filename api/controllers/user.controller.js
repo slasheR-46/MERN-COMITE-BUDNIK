@@ -7,14 +7,19 @@ export const test = (req, res) => {
 };
 
 export const updateUser = async (req, res, next) => {
-  if (!req.user.isAdmin && req.user.id !== req.params.userId) {
+  if (req.user.id !== req.params.userId) {
     return next(
-      errorHandler(403, "No tienes permiso para actualizar este usuario.")
+      errorHandler(
+        403,
+        "No tienes permiso para actualizar este usuario mierda."
+      )
     );
   }
   if (req.body.password) {
     if (req.body.password.length < 6) {
-      return next(errorHandler(400, "No estas autorizado para esta ruta"));
+      return next(
+        errorHandler(400, "La contraseña debe tener al menos 6 caracteres")
+      );
     }
     req.body.password = bcryptjs.hashSync(req.body.password, 10);
   }
@@ -37,32 +42,32 @@ export const updateUser = async (req, res, next) => {
         errorHandler(400, "El nombre de usuario debe estar en minúsculas")
       );
     }
-    if (!req.body.username.match(/^[a-z0-9]+$/)) {
+    if (!req.body.username.match(/^[a-zA-Z0-9]+$/)) {
       return next(
         errorHandler(
           400,
-          "El nombre de usuario solo puede contener letras y números"
+          "Nombre de usuario solo puede contener letras y números"
         )
       );
     }
-    try {
-      const updatedUser = await User.findByIdAndUpdate(
-        req.params.userId,
-        {
-          $set: {
-            username: req.body.username,
-            email: req.body.email,
-            profilePicture: req.body.profilePicture,
-            password: req.body.password,
-          },
+  }
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.userId,
+      {
+        $set: {
+          username: req.body.username,
+          email: req.body.email,
+          profilePicture: req.body.profilePicture,
+          password: req.body.password,
         },
-        { new: true }
-      );
-      const { password, ...rest } = updatedUser._doc;
-      res.status(200).json(rest);
-    } catch (error) {
-      next(error);
-    }
+      },
+      { new: true }
+    );
+    const { password, ...rest } = updatedUser._doc;
+    res.status(200).json(rest);
+  } catch (error) {
+    next(error);
   }
 };
 

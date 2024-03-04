@@ -20,11 +20,13 @@ Content-Type: application/json
 
 // 📁 USER 📁
 ### Actualizar usuario
-Put http://localhost:3000/api/user/update/65d74542c50e7dda4556e5c1
+Put http://localhost:3000/api/user/update/65d7b15612b48787920ab659
 Content-Type: application/json
 
 {
-	"username": "prude"
+	"username": "admin000",
+    "email": "admin000@gmail.com",
+    "password": "admin000"
 }
 
 ###  Eliminar usuario
