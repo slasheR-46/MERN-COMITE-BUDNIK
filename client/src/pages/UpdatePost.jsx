@@ -7,13 +7,13 @@ import {
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
+import { app } from "../../firebase";
 
 import { useEffect, useState } from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { app } from "../../firebase";
 
 export default function UpdatePost() {
   const [file, setFile] = useState(null);
@@ -66,7 +66,7 @@ export default function UpdatePost() {
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           setImageUploadProgress(progress.toFixed(0));
         },
-        () => {
+        (error) => {
           setImageUploadError("Image upload failed");
           setImageUploadProgress(null);
         },
@@ -87,8 +87,7 @@ export default function UpdatePost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(
-        `/api/post/updatepost/${formData._id}/${currentUser._id}`,
+      const res = await fetch(`/api/post/updatepost/${formData._id}/${currentUser._id}`,
         {
           method: "PUT",
           headers: {

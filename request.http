@@ -4,8 +4,8 @@ POST http://localhost:3000/api/auth/signin
 Content-Type: application/json
 
 {
-	"email": "admin@gmail.com",
-	"password": "admin"
+	"email": "admin000@gmail.com",
+	"password": "admin000"
 }
 
 ### Creando usuario
@@ -13,9 +13,9 @@ POST http://localhost:3000/api/auth/signup
 Content-Type: application/json
     
 {
-    "username": "admin",
-    "email": "admin@gmail.com",
-    "password": "admin"
+    "username": "normal01",
+    "email": "normal01@gmail.com",
+    "password": "normal01"
 }
 
 // 📁 USER 📁
@@ -30,7 +30,7 @@ Content-Type: application/json
 }
 
 ###  Eliminar usuario
-DELETE http://localhost:3000/api/user/delete/65d55f4ced0035776a705feb
+DELETE http://localhost:3000/api/user/delete/65e89057aa988e733fb354fa
 
 
 
