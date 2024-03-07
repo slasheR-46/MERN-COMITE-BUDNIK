@@ -143,7 +143,7 @@ export default function DashPosts() {
           )}
         </>
       ) : (
-        <p>No hay usuarios disponibles!</p>
+        <p>No hay posts disponibles.</p>
       )}
       <Modal
         show={showModal}

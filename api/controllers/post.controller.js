@@ -3,14 +3,10 @@ import { errorHandler } from "../utils/error.js";
 
 export const create = async (req, res, next) => {
   if (!req.user.isAdmin) {
-    return next(
-      errorHandler(403, "No tienes permisos para crear una publicación.")
-    );
+    return next(errorHandler(403, "No tienes permisos para crear un post"));
   }
   if (!req.body.title || !req.body.content) {
-    return next(
-      errorHandler(400, "Por favor todos los campos son requeridos.")
-    );
+    return next(errorHandler(400, "Por favor, rellena todos los campos"));
   }
   const slug = req.body.title
     .split(" ")
@@ -78,12 +74,12 @@ export const getposts = async (req, res, next) => {
 export const deletepost = async (req, res, next) => {
   if (!req.user.isAdmin || req.user.id !== req.params.userId) {
     return next(
-      errorHandler(403, "No tienes permiso para eliminar una publicación.")
+      errorHandler(403, "No tienes permiso para eliminar esta publicación.")
     );
   }
   try {
     await Post.findByIdAndDelete(req.params.postId);
-    res.status(200).json({ message: "Publicación eliminada." });
+    res.status(200).json("El post ha sido eliminado.");
   } catch (error) {
     next(error);
   }
