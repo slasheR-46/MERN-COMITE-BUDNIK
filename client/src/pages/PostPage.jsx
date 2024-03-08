@@ -3,12 +3,11 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 export default function PostPage() {
-  const { postSlug } = useParams;
+  const { postSlug } = useParams();
   const [loading, setLoading] = useState(true);
+  // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState(false);
   const [post, setPost] = useState(null);
-
-  // console.log(post);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -16,6 +15,7 @@ export default function PostPage() {
         setLoading(true);
         const res = await fetch(`/api/post/getposts?slug=${postSlug}`);
         const data = await res.json();
+        console.log(res);
         if (!res.ok) {
           setError(true);
           setLoading(false);
@@ -26,7 +26,6 @@ export default function PostPage() {
           setLoading(false);
           setError(false);
         }
-        console.log(res);
       } catch (error) {
         setError(true);
         setLoading(false);
@@ -53,12 +52,22 @@ export default function PostPage() {
         <Button color="gray" pill size="xs">
           {post && post.category}
         </Button>
-        <img
-          src={post && post.image}
-          alt={post && post.title}
-          className="mt-10 p-3 max-h-[600px] w-full object-cover"
-        />
       </Link>
+      <img
+        src={post && post.image}
+        alt={post && post.title}
+        className="mt-10 p-3 max-h-[600px] w-full object-cover"
+      />
+      <div className="flex justify-between p-3 border-b border-slate-500 mx-auto w-full max-w-2xl text-xs">
+        <span>{post && new Date(post.createdAt).toLocaleTimeString()}</span>
+        <span className="italic">
+          {post && (post.content.length / 1000).toFixed(0)} Minutos de lectura
+        </span>
+      </div>
+      <div
+        className="p-3 max-w-2xl mx-auto w-full post-content"
+        dangerouslySetInnerHTML={{ __html: post && post.content }}
+      ></div>
     </main>
   );
 }
