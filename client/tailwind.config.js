@@ -7,6 +7,11 @@ export default {
   ],
   theme: {
     extend: {},
+    variants: {
+      extend: {
+        backgroundColor: ["hover"],
+      },
+    },
   },
   plugins: [require("flowbite/plugin"), require("tailwind-scrollbar")],
 };
