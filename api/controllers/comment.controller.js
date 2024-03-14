@@ -1,4 +1,5 @@
 import Comment from "../models/comment.model.js";
+import { errorHandler } from "../utils/error.js";
 
 export const createComment = async (req, res, next) => {
   try {
@@ -6,7 +7,7 @@ export const createComment = async (req, res, next) => {
 
     if (userId !== req.user.id) {
       return next(
-        errorHandler(403, "You are not allowed to create this comment")
+        errorHandler(403, "No tienes permiso para crear este comentario.")
       );
     }
 
