@@ -100,9 +100,11 @@ export default function CreatePost() {
             }
           >
             <option value="Sin categoria">Sin categoria</option>
-            <option value="Prueba categoria 0">TI</option>
-            <option value="Prueba categoria 1">Recurso Humanos</option>
-            <option value="Prueba categoria 1">Prevencion de Riesgos</option>
+            <option value="Gerencia">Gerencia</option>
+            <option value="Planta la Pintana">Planta la pintana</option>
+            <option value="TI">TI</option>
+            <option value="Prevencion de Riesgos">Prevencion de Riesgos</option>
+            <option value="Recursos Humanos">Recurso Humanos</option>
           </Select>
         </div>
 

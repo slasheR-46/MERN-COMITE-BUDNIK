@@ -128,10 +128,14 @@ export default function Search() {
               value={sidebarData.category}
               id="category"
             >
-              <option value="uncategorized">Sin categoria</option>
-              <option value="reactjs">Prueba 0</option>
-              <option value="nextjs">prueba 1</option>
-              <option value="javascript">Prueba 2</option>
+              <option value="Sin categoria">Sin categoria</option>
+              <option value="Gerencia">Gerencia</option>
+              <option value="Planta la Pintana">Planta la pintana</option>
+              <option value="TI">TI</option>
+              <option value="Prevencion de Riesgos">
+                Prevencion de Riesgos
+              </option>
+              <option value="Recursos Humanos">Recurso Humanos</option>
             </Select>
           </div>
           <Button type="submit" outline gradientDuoTone="purpleToPink">

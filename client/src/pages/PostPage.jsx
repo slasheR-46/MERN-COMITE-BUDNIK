@@ -44,7 +44,7 @@ export default function PostPage() {
   return (
     <main className="p-3 flex flex-col max-w-6xl mx-auto min-h-screen">
       <h1 className="text-3xl mt-10 p-3 text-center font-serif max-w-2xl mx-auto lg:text-4xl">
-        {post && post.title} Aca va el titulo del json post
+        {post && post.title} {post && post.category}
       </h1>
       <Link
         to={`/search?category=${post && post.category}`}
