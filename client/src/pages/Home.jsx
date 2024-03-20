@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <div className="flex flex-col gap-3 p-8 px-3 max-w-6xl mx-auto ">
-        <h1 className="text-3xl font-bold lg:text-6xl">
+        <h1 className="bg-gradient-to-r from-orange-500 to-orange-200 text-transparent bg-clip-text text-3xl font-bold lg:text-6xl">
           Bienvenidos a budnik Info
         </h1>
         <p className="text-gray-500 text-xs sm:text-sm">
@@ -26,7 +26,7 @@ export default function Home() {
         </p>
         <Link
           to="/search"
-          className="text-xs sm:text-sm text-teal-500 font-bold hover:underline"
+          className="text-orange-500 text-xs sm:text-sm font-bold hover:underline"
         >
           Ver todos los posts
         </Link>
@@ -48,7 +48,7 @@ export default function Home() {
             </div>
             <Link
               to={"/search"}
-              className="text-lg text-teal-500 hover:underline text-center"
+              className="text-lg text-orange-500 hover:underline text-center"
             >
               Ver todos los posts
             </Link>
